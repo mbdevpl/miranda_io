@@ -1,0 +1,5 @@
+This code has been Reviewed & Released, and contains the necessary UCRL info
+and notices.
+
+To build:  mpif90 (or equivalent) miranda_io.f90
+To run:  number of processes, etc. comes from mpirun or the launch mechanism.
