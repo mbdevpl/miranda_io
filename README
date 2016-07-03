@@ -3,3 +3,6 @@ and notices.
 
 To build:  mpif90 (or equivalent) miranda_io.f90
 To run:  number of processes, etc. comes from mpirun or the launch mechanism.
+
+The environment variable MIRANDA_IO_FNAME may be set to use a specific
+file name for testing.

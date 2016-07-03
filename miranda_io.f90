@@ -40,13 +40,12 @@
 !     Commercialization of this product is prohibited without notifying the Department 
 !     of Energy (DOE) or Lawrence Livermore National Laboratory (LLNL).
 
-
-
-
-
-      program pleasecorrupt
+      program miranda_io
 
       implicit none
+
+      character*1024 :: basefname = "miranda_io.out"
+      character*1024 :: fname, file_suffix, home
 
       integer, parameter :: ni=24, nj=30, nk=1680
       integer, parameter :: loopparm=100, shiftparm=4
@@ -68,6 +67,15 @@
       call MPI_COMM_SIZE(MPI_COMM_WORLD, nprocs, ierr)
       call MPI_COMM_RANK(MPI_COMM_WORLD, mynod, ierr)
 
+!     check environment for file name, then broadcast from root task
+      if (mynod == 0) then
+        call getenv('MIRANDA_IO_FNAME', value=home)
+        if (trim(home) /= '') then
+          basefname = trim(home)
+        endif
+      endif
+      call MPI_BCAST(basefname, 1024, MPI_CHAR, 0, MPI_COMM_WORLD, ierr);
+
       if( mynod == 0 ) then
         print *, 'Fortran I/O test emulating Bill Cabots code and bz4410'
         print *, '6 mixed arrays of int*8 written by 1 write()'
@@ -77,6 +85,8 @@
         print *, 'node(task reading) is node(task writing) + shift'
         print *, 'After reading back the arrays they are examined, and'
         print *, 'any discrepancies reported.'
+        print *, ''
+        print *, 'Writing to:  ', trim(basefname), '.*'
       endif
 
       nodeoff=2**21
@@ -90,7 +100,9 @@
         W6 = W5
 
         writeunit = mynod+10000
-        open(unit=writeunit,form='unformatted',action='write')
+        write(file_suffix, '(i5.5)') writeunit
+        fname = trim(basefname) // '.' // trim(file_suffix)
+        open(unit=writeunit,file=fname,form='unformatted',action='write')
         write(writeunit,iostat=ios) W5,W1,W2,W3(:,:,:,1),W6,W4(:,:,:,1)
         close(writeunit)
 
@@ -112,7 +124,9 @@
         R5 = 0
         R6 = 0
 
-        open(unit=readunit,form='unformatted',action='read')
+        write(file_suffix, '(i5.5)') readunit
+        fname = trim(basefname) // '.' // trim(file_suffix)
+        open(unit=readunit,file=fname,form='unformatted',action='read')
         read(readunit,iostat=ios) R5,R1,R2,R3(:,:,:,1),R6,R4(:,:,:,1)
         close(readunit)
 
@@ -187,6 +201,4 @@
 
       call MPI_FINALIZE(ierr)
 
-      end program pleasecorrupt
-
-
+      end program miranda_io
