@@ -136,8 +136,8 @@
           print *, 'Error1 on task ',mynod,'at ',ierr,' points reading ',readunit - 10000
           errors = errors + ierr
           mloc(1:3) = maxloc(abs(r1-w1))
-	  wvalue = w1(mloc(1),mloc(2),mloc(3))+ishift
-	  rvalue = r1(mloc(1),mloc(2),mloc(3))
+          wvalue = w1(mloc(1),mloc(2),mloc(3))+ishift
+          rvalue = r1(mloc(1),mloc(2),mloc(3))
           print *, 'Maximum error at ', mloc(1:3),' write ',wvalue,' ; read ',rvalue
         endif
         ierr = count( r2-w2 /= ishift )
@@ -145,8 +145,8 @@
           print *, 'Error2 on task ',mynod,'at ',ierr,' points reading ',readunit - 10000
           errors = errors + ierr
           mloc(1:3) = maxloc(abs(r2-w2))
-	  wvalue = w2(mloc(1),mloc(2),mloc(3))+ishift
-	  rvalue = r2(mloc(1),mloc(2),mloc(3))
+          wvalue = w2(mloc(1),mloc(2),mloc(3))+ishift
+          rvalue = r2(mloc(1),mloc(2),mloc(3))
           print *, 'Maximum error at (', mloc(1:3),'); write ',wvalue,' ; read ',rvalue
         endif
         ierr = count( r3(:,:,:,1)-w3(:,:,:,1) /= ishift )
@@ -154,8 +154,8 @@
           print *, 'Error3 on task ',mynod,'at ',ierr,' points reading ',readunit - 10000
           errors = errors + ierr
           mloc(1:3) = maxloc(abs(r3(:,:,:,1)-w3(:,:,:,1)))
-	  wvalue = w3(mloc(1),mloc(2),mloc(3),1)+ishift
-	  rvalue = r3(mloc(1),mloc(2),mloc(3),1)
+          wvalue = w3(mloc(1),mloc(2),mloc(3),1)+ishift
+          rvalue = r3(mloc(1),mloc(2),mloc(3),1)
           print *, 'Maximum error at (', mloc(1:3),'); write ',wvalue,' ; read ',rvalue
         endif
         ierr = count( r4(:,:,:,1)-w4(:,:,:,1) /= ishift )
@@ -163,8 +163,8 @@
           print *, 'Error4 on task ',mynod,'at ',ierr,' points reading ',readunit - 10000
           errors = errors + ierr
           mloc(1:3) = maxloc(abs(r4(:,:,:,1)-w4(:,:,:,1)))
-	  wvalue = w4(mloc(1),mloc(2),mloc(3),1)+ishift
-	  rvalue = r4(mloc(1),mloc(2),mloc(3),1)
+          wvalue = w4(mloc(1),mloc(2),mloc(3),1)+ishift
+          rvalue = r4(mloc(1),mloc(2),mloc(3),1)
           print *, 'Maximum error at (', mloc(1:3),'); write ',wvalue,' ; read ',rvalue
         endif
         ierr = count( r5-w5 /= ishift )
@@ -172,8 +172,8 @@
           print *, 'Error5 on task ',mynod,'at ',ierr,' points reading ',readunit - 10000
           errors = errors + ierr
           mloc = maxloc(abs(r5-w5))
-	  wvalue = w5(mloc(1),mloc(2),mloc(3),mloc(4))+ishift
-	  rvalue = r5(mloc(1),mloc(2),mloc(3),mloc(4))
+          wvalue = w5(mloc(1),mloc(2),mloc(3),mloc(4))+ishift
+          rvalue = r5(mloc(1),mloc(2),mloc(3),mloc(4))
           print *, 'Maximum error at (', mloc,'); write ',wvalue,' ; read ',rvalue
         endif
         ierr = count( r6-w6 /= ishift )
@@ -181,8 +181,8 @@
           print *, 'Error6 on task ',mynod,'at ',ierr,' points reading ',readunit - 10000
           errors = errors + ierr
           mloc = maxloc(abs(r6-w6))
-	  wvalue = w6(mloc(1),mloc(2),mloc(3),mloc(4))+ishift
-	  rvalue = r6(mloc(1),mloc(2),mloc(3),mloc(4))
+          wvalue = w6(mloc(1),mloc(2),mloc(3),mloc(4))+ishift
+          rvalue = r6(mloc(1),mloc(2),mloc(3),mloc(4))
           print *, 'Maximum error at (', mloc,'); write ',wvalue,' ; read ',rvalue
         endif
 
